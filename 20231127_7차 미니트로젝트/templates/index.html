@@ -1,0 +1,255 @@
+{% comment %} <!doctype html>
+<html>
+    <head>
+        <title>Django</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1><a href="/">Django</a></h1>
+        <ol>
+            <li><a href="/selfchatgpt/">ChatGPT API 사용</a></li>
+            <li><a href="/selfsignlanguagetochatgpt/">수어-ChatGPT 연동</a></li>
+            <li><a href="/selfchatgpt/">내가 만든 ChatGPT API 사용</a></li>
+            <li><a href="/selfsignlanguagetochatgpt/">내가 만든 수어-ChatGPT 연동</a></li>
+        </ol>
+        <h2>Django</h2>
+        <p><a href="https://www.djangoproject.com/" target="_blank">Django</a>는 Python으로 작성된 오픈 소스 웹 프레임워크로, 빠르고 쉬운 웹 개발을 가능하게 합니다.</p>
+    </body> {% endcomment %}
+{% load static %}
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Modern Business - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="">SignChptGPT</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        {% if not user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Signup</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="">{{user}}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}?next={{request.path}}">Logout</a></li>
+                        {% endif %}
+                        <li class="nav-item"><a class="nav-link" href="https://aivle.edu.kt.co.kr/home/brd/qna/main?mcd=HM02006000">FAQ</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                <li><a class="dropdown-item" href="https://dduniverse.tistory.com/category/KT%EC%97%90%EC%9D%B4%EB%B8%94%EC%8A%A4%EC%BF%A8">Blog Home</a></li>
+                                <li><a class="dropdown-item" href="blog-post.html">Blog Post</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                <li><a class="dropdown-item" href="portfolio-overview.html">Portfolio Overview</a></li>
+                                <li><a class="dropdown-item" href="portfolio-item.html">Portfolio Item</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center justify-content-center">
+                    <div class="col-lg-8 col-xl-7 col-xxl-6">
+                        <div class="my-5 text-center text-xl-start">
+                            <h1 class="display-5 fw-bolder text-white mb-2">SignChatGPT</h1>
+                            <p class="lead fw-normal text-white-50 mb-4">
+                                "수어로 소통하는 새로운 창구, 실시간 수어 인터프리팅과 다양한 학습 자료로 청각 장애인들의 소통과 정보 접근을 지원합니다."</p>
+                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="/selfchatgpt/">수어질문</a>
+                                <a class="btn btn-outline-light btn-lg px-4" href="/selfsignlanguagetochatgpt/">수어번역</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="https://cdn.startupn.kr/news/photo/202302/32023_33904_230.jpg" alt="..."></div>
+                </div>
+            </div>
+        </header>
+        <!-- Features section-->
+        {% comment %} <section class="py-5" id="features">
+            <div class="container px-5 my-5">
+                <div class="row gx-5">
+                    <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">수화의 중요성</h2></div>
+                    <div class="col-lg-8">
+                        <div class="row gx-5 row-cols-1 row-cols-md-2">
+                            <div class="col mb-5 h-100">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                                <h2 class="h5">Featured title</h2>
+                                <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                            </div>
+                            <div class="col mb-5 h-100">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                                <h2 class="h5">Featured title</h2>
+                                <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                            </div>
+                            <div class="col mb-5 mb-md-0 h-100">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                                <h2 class="h5">Featured title</h2>
+                                <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                            </div>
+                            <div class="col h-100">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                                <h2 class="h5">Featured title</h2>
+                                <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> {% endcomment %}
+        <!-- Testimonial section-->
+        {% comment %} <div class="py-5 bg-light">
+            <div class="container px-5 my-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-10 col-xl-7">
+                        <div class="text-center">
+                            <div class="fs-4 mb-4 fst-italic">"Working with Start Bootstrap templates has saved me tons of development time when building new projects! Starting with a Bootstrap template just makes things easier!"</div>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="...">
+                                <div class="fw-bold">
+                                    Tom Ato
+                                    <span class="fw-bold text-primary mx-1">/</span>
+                                    CEO, Pomodoro
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> {% endcomment %}
+        <!-- Blog preview section-->
+        <section class="py-5">
+            <div class="container px-5 my-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+                        <div class="text-center">
+                            <h2 class="fw-bolder">수어 학습 자료실</h2>
+                            <p class="lead fw-normal text-muted mb-5">
+                                "수어의 매력적인 세계를 탐험하며, 입문자부터 전문가까지 모두를 위한 수어 학습자료실! 동영상 강의와 교재로 더 나은 소통의 문을 열어보세요."</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-5">
+                    <div class="col-lg-4 mb-5">
+                        <div class="card h-100 shadow border-0">
+        
+                            <img class="card-img-top" src="https://i.ytimg.com/vi/TzUxZe3E4tA/sddefault.jpg" alt="...">
+                            
+                            <div class="card-body p-4">
+                                <div class="badge bg-primary bg-gradient rounded-pill mb-2">YouTube</div>
+                                <a class="text-decoration-none link-dark stretched-link" href="https://www.youtube.com/watch?v=T8NSZKNZ3e8"><h5 class="card-title mb-3">장애인의 날 특집 '세글자송' 수어로 불러봐요!</h5></a>
+                                <p class="card-text mb-0">세상에는 날마다 말해도 아깝지 않은 예쁜 말이 참 많아요! 
+                                    미안해, 고마워, 최고야, 소중해, 좋아해, 행복해! 
+                                    이 중에 수어로는 몇개나 아나요? 
+                                    '세글자송'을 들으면서 함께 어여쁜 수어 몇개를 배워보아요!</p>
+                            </div>
+                            <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                <div class="d-flex align-items-end justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-5">
+                        <div class="card h-100 shadow border-0">
+                            <img class="card-img-top" src="https://t1.daumcdn.net/cfile/tistory/256C743851CD5F0811" alt="...">
+                            <div class="card-body p-4">
+                                <div class="badge bg-primary bg-gradient rounded-pill mb-2">Blog</div>
+                                <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">수화로 인사하는 방법</h5></a>
+                                <p class="card-text mb-0">수화는 말로 표현하기 어려운 감정과 의미를 손동작과 표현으로 전달하는 아름다운 언어입니다. 여러분을 수화로 안녕하게 인사드리며, 새로운 소통의 세계로 여러분을 초대합니다. 함께 수화의 매력을 발견하고, 인사의 의미를 수화로 표현하는 방법을 살펴봅시다. </p>
+                            </div>
+                            <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                <div class="d-flex align-items-end justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-5">
+                        <div class="card h-100 shadow border-0">
+                            <img class="card-img-top" src="https://www.dspress.org/news/photo/202105/10797_11026_246.jpg" alt="...">
+                            <div class="card-body p-4">
+                                <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
+                                <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">손짓으로 감정의 온기를 전하다</h5></a>
+                                <p class="card-text mb-0">세상에는 다양한 정체성을 지닌 사람들이 존재한다. 수많은 정체성 중에는 장애라는 정체성도 있다. 농인은 그들의 언어인 수화 언어를 통해 사람들과 소통하며 함께 살아간다. 그리고 이 수어를 더 넓은 세상에 알리기 위해 예술로 표현하는 이가 있다. ‘지후트리’로 활동하는 박지후 수화 아티스트를 만났다.
+
+                                </p>
+                            </div>
+                            <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                <div class="d-flex align-items-end justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Call to action-->
+                {% comment %} <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
+                    <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
+                        <div class="mb-4 mb-xl-0">
+                            <div class="fs-3 fw-bold text-white">New products, delivered to you.</div>
+                            <div class="text-white-50">Sign up for our newsletter for the latest updates.</div>
+                        </div>
+                        <div class="ms-xl-4">
+                            <div class="input-group mb-2">
+                                <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter">
+                                <button class="btn btn-outline-light" id="button-newsletter" type="button">Sign up</button>
+                            </div>
+                            <div class="small text-white-50">We care about privacy, and will never share your data.</div>
+                        </div>
+                    </div>
+                </aside> {% endcomment %}
+            </div>
+        </section>
+    </main>
+    <!-- Footer-->
+    <footer class="bg-dark py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto"><div class="small m-0 text-white">Copyright © Your Website 2023</div></div>
+                <div class="col-auto">
+                    <a class="link-light small" href="#!">Privacy</a>
+                    <span class="text-white mx-1">·</span>
+                    <a class="link-light small" href="#!">Terms</a>
+                    <span class="text-white mx-1">·</span>
+                    <a class="link-light small" href="#!">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    {% comment %} <script src="js/scripts.js"></script> {% endcomment %}
+
+
+</body></html>
